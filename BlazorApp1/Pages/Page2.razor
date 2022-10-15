@@ -1,0 +1,62 @@
+﻿@page "/page2"
+
+<h3>Page2</h3>
+
+<div style="margin-top: 20px">
+    <Popover Trigger="new[] { Trigger.Click }">
+        <ContentTemplate>
+
+            <div>
+                <Popover Placement="Placement.Right">
+                    <ContentTemplate>
+                        <div style="min-width: 120px">
+                            this is bug1!
+                        </div>
+
+                    </ContentTemplate>
+                    <ChildContent>
+                        <a >
+                            bug1
+                        </a>
+
+                    </ChildContent>
+                </Popover>
+            </div>
+
+
+            <div style="margin-top: 20px">
+                <Popover Placement="Placement.Right">
+                    <ContentTemplate>
+                        <div style="min-width: 120px">
+                            this is bug2
+                        </div>
+
+                    </ContentTemplate>
+                    <ChildContent>
+                        <a >
+                            bug2
+                        </a>
+
+                    </ChildContent>
+                </Popover>
+            </div>
+
+
+        </ContentTemplate>
+        <ChildContent>
+            <Button Size="small" Type="@ButtonType.Primary">
+                bug0
+            </Button>
+
+        </ChildContent>
+    </Popover>
+
+    <div>
+        When Trigger is Click, switching the mouse back and forth in the drop-down option will cause the panel to close automatically
+    </div>
+
+</div>
+
+@code {
+
+}
