@@ -1,0 +1,94 @@
+﻿@using BlazorApp1.Data
+@page "/page3"
+
+
+<h3>Page3</h3>
+
+<Button OnClick="OnClick"> 切换状态</Button>
+
+<Table Size="TableSize.Small" DataSource="datas"
+       ExpandIconColumnIndex="0"
+       DefaultExpandAllRows="true"
+       TreeChildren="item => item.Children"
+       ScrollBarWidth="9px" PageSize="100" TItem="TestData">
+
+    <ChildContent>
+
+        <PropertyColumn Title="Id" Width="120" Ellipsis Property="c => c.Id">
+
+
+        </PropertyColumn>
+
+
+        <Column Title="开始时间" Width="140" @bind-Field="@context.Start">
+            <CellRender Context="cell">@cell.FieldValue</CellRender>
+        </Column>
+
+        <Column Title="截止时间" Width="140" @bind-Field="@context.End">
+            <CellRender Context="cell">@cell.FieldValue</CellRender>
+        </Column>
+
+        @if (showVisible)
+        {
+            <PropertyColumn Title="备注" Width="90" Ellipsis Property="c => c.Tips">
+
+
+                <div style="color: red">
+                    逾期 1 天
+                </div>
+
+
+            </PropertyColumn>
+        }
+
+
+
+    </ChildContent>
+
+
+
+</Table>
+
+
+
+
+@code {
+
+    private bool showVisible = false;
+
+    private List<TestData> datas = new();
+
+
+    private void OnClick()
+    {
+        showVisible = !showVisible;
+    }
+
+    protected override void OnInitialized()
+    {
+
+        for (var i = 0; i < 30; i++)
+        {
+            var d = new TestData()
+                {
+                    Id = i,
+                    Text = i.ToString(),
+                    Start = DateTime.Now,
+                    End = DateTime.Now,
+                };
+
+
+            if (i == 2 || i == 4)
+            {
+                d.Children = new List<TestData>(){
+                    new TestData(){
+                        Id = i +1,
+                        Text = "child",
+                    }
+                };
+            }
+
+            datas.Add(d);
+        }
+    }
+}
