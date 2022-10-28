@@ -11,3 +11,10 @@ You can switch back and forth between page and page2 by clicking the button abov
 page2:
 
 When Trigger is Click, switching the mouse back and forth in the drop-down option will cause the panel to close automatically
+
+
+page3:
+
+table icon error
+
+切换table状态的时候展开图标错误.
